@@ -84,8 +84,18 @@ ul { list-style: none; }
 }
 
 .logo {
-  font-family: "Orbitron", system-ui, sans-serif;
-  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  display: block;
+  height: 34px;
+  width: auto;
+}
+
+.logo-text {
   font-family: "Lobster", "Brush Script MT", cursive;
   font-size: 30px;
   letter-spacing: 0.01em;
@@ -104,7 +114,7 @@ ul { list-style: none; }
   gap: 8px;
 }
 
-.logo .spark {
+.logo-text .spark {
   -webkit-text-fill-color: initial;
   background: none;
   text-shadow: none;
