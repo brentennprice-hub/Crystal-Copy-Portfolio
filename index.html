@@ -17,8 +17,8 @@
 
   <header class="topbar">
     <a class="logo" href="#top">
-      <img class="logo-img" src="assets/logo.png" alt="Crystal Copy" onload="this.nextElementSibling.hidden=true" onerror="this.remove()">
-      <span class="logo-text">Crystal Copy <span class="spark" aria-hidden="true">✦</span></span>
+      <img id="logo-img" class="logo-img" alt="Crystal Copy">
+      <span class="logo-text" id="logo-fallback">Crystal Copy <span class="spark" aria-hidden="true">✦</span></span>
     </a>
     <nav class="nav">
       <a href="#work">The words</a>
@@ -46,7 +46,7 @@
               <span class="portrait-plus">+</span>
               <span class="portrait-label">Portrait</span>
             </div>
-            <img class="portrait-img" src="assets/portrait.jpg" alt="Portrait of Brendan Tennessee Price" onerror="this.remove()">
+            <img id="portrait-img" class="portrait-img" alt="Portrait of Brendan Tennessee Price">
           </div>
 
           <dl class="traits">

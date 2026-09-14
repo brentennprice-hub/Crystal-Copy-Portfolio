@@ -111,3 +111,39 @@
   syncMotionPreference();
   document.addEventListener('visibilitychange', () => { previousTime = null; });
 })();
+
+// Optional real assets (logo, portrait): try each likely extension in turn,
+// falling back to the built-in placeholder if none of them exist.
+(() => {
+  function loadFirst(img, candidates, onSuccess, onFail) {
+    let i = 0;
+    function tryNext() {
+      if (i >= candidates.length) { onFail && onFail(); return; }
+      img.src = candidates[i++];
+    }
+    img.addEventListener('error', tryNext);
+    if (onSuccess) img.addEventListener('load', onSuccess, { once: true });
+    tryNext();
+  }
+
+  const logoImg = document.getElementById('logo-img');
+  const logoFallback = document.getElementById('logo-fallback');
+  if (logoImg) {
+    loadFirst(
+      logoImg,
+      ['assets/logo.png', 'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp'],
+      () => { logoFallback.hidden = true; },
+      () => { logoImg.remove(); }
+    );
+  }
+
+  const portraitImg = document.getElementById('portrait-img');
+  if (portraitImg) {
+    loadFirst(
+      portraitImg,
+      ['assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png', 'assets/portrait.webp'],
+      null,
+      () => { portraitImg.remove(); }
+    );
+  }
+})();
