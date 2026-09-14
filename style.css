@@ -255,6 +255,10 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
+.portrait-frame.has-photo {
+  border-style: solid;
+}
+
 .portrait-fallback {
   position: absolute;
   inset: 0;

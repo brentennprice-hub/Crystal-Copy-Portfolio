@@ -149,8 +149,9 @@
       [
         'assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png', 'assets/portrait.webp',
         'portrait.jpg', 'portrait.jpeg', 'portrait.png', 'portrait.webp',
+        'IMG_9787.jpg',
       ],
-      null,
+      () => { portraitImg.closest('.portrait-frame').classList.add('has-photo'); },
       () => { portraitImg.remove(); }
     );
   }
