@@ -57,20 +57,25 @@ ul { list-style: none; }
 }
 
 /* ---------- Synthwave grid background ---------- */
-/* Single flat, uniform grid layer — no 3D/perspective layer competing
-   with it. A gentle bottom-weighted opacity ramp gives a sense of
-   "grounding" without a second pattern overlapping the first. */
-.grid-flat {
+/* Single 3D perspective floor, fading to nothing near the top. Kept
+   short relative to the perspective depth so it never approaches the
+   transform's vanishing point — a taller box here is what caused the
+   lines to bunch up and double back in earlier attempts. */
+.grid-floor {
   position: fixed;
-  inset: 0;
+  inset: auto 0 0 0;
+  height: 62vh;
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(167, 139, 250, 0.45) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(94, 234, 212, 0.35) 1px, transparent 1px);
+    linear-gradient(rgba(167, 139, 250, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 234, 212, 0.4) 1px, transparent 1px);
   background-size: 56px 56px, 56px 56px;
-  -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 100%);
-  mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 100%);
+  transform: perspective(1100px) rotateX(58deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 25%, transparent 85%);
+  mask-image: linear-gradient(to top, black 0%, black 25%, transparent 85%);
+  opacity: 0.38;
 }
 
 /* ---------- Topbar ---------- */
@@ -80,7 +85,7 @@ ul { list-style: none; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 14px;
-  padding: 26px 0 18px;
+  padding: 26px 0 46px;
 }
 
 .logo {
@@ -91,8 +96,9 @@ ul { list-style: none; }
 
 .logo-img {
   display: block;
-  height: 72px;
-  width: auto;
+  width: 234px;
+  max-width: 55vw;
+  height: auto;
 }
 
 .logo-text {
@@ -147,12 +153,6 @@ ul { list-style: none; }
   border-bottom: 1px solid;
   border-image: var(--holo) 1;
   padding-bottom: 2px;
-}
-
-.topbar-rule {
-  height: 1px;
-  background: linear-gradient(90deg, var(--border-strong), transparent 85%);
-  margin-bottom: 28px;
 }
 
 @keyframes holoShift {
@@ -506,8 +506,7 @@ ul { list-style: none; }
 
 /* ---------- Footer / CTA ---------- */
 .cta {
-  border-top: 1px solid var(--border);
-  padding: 56px 0 60px;
+  padding: 72px 0 60px;
   text-align: center;
 }
 
