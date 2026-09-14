@@ -94,9 +94,11 @@
   requestAnimationFrame(animate);
 
   // Deliberately no hover handlers: moving the pointer never pauses the wall.
+  const pauseText = pause.querySelector('.pause-text');
   pause.addEventListener('click', () => {
     paused = !paused;
-    pause.textContent = paused ? 'Play animation' : 'Pause animation';
+    pauseText.textContent = paused ? 'Play' : 'Pause';
+    pause.classList.toggle('is-paused', paused);
     pause.setAttribute('aria-pressed', String(paused));
   });
 
