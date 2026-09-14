@@ -67,11 +67,9 @@ ul { list-style: none; }
     linear-gradient(rgba(167, 139, 250, 0.7) 1px, transparent 1px),
     linear-gradient(90deg, rgba(94, 234, 212, 0.55) 1px, transparent 1px);
   background-size: 56px 56px, 56px 56px;
-  transform: perspective(480px) rotateX(64deg);
+  transform: perspective(900px) rotateX(50deg);
   transform-origin: bottom center;
-  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 48%);
-  mask-image: linear-gradient(to top, black 0%, transparent 48%);
-  opacity: 0.65;
+  opacity: 0.55;
 }
 
 /* ---------- Topbar ---------- */
@@ -307,10 +305,11 @@ ul { list-style: none; }
 .trait:first-child { border-top: none; padding-top: 0; }
 
 .trait dt {
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8dd8c8;
+  color: #a8ecdc;
   margin-bottom: 4px;
 }
 
@@ -337,10 +336,11 @@ ul { list-style: none; }
 .service:first-child { border-top: none; padding-top: 0; }
 
 .service dt {
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8dd8c8;
+  color: #a8ecdc;
   margin-bottom: 4px;
 }
 
@@ -506,17 +506,18 @@ ul { list-style: none; }
 }
 
 .cta h2 {
-  font-size: clamp(22px, 3.2vw, 36px);
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 900;
+  letter-spacing: -0.005em;
 }
 
 .email-link {
   display: inline-block;
   margin-top: 22px;
-  font-size: clamp(17px, 2vw, 22px);
-  font-weight: 700;
-  font-family: "Orbitron", sans-serif;
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 900;
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
   background: var(--holo);
   background-size: 200% 200%;
   -webkit-background-clip: text;
