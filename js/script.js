@@ -126,12 +126,17 @@
     tryNext();
   }
 
+  // Checked in both assets/ and the repo root, since a manual GitHub upload
+  // may land in either place.
   const logoImg = document.getElementById('logo-img');
   const logoFallback = document.getElementById('logo-fallback');
   if (logoImg) {
     loadFirst(
       logoImg,
-      ['assets/logo.png', 'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp'],
+      [
+        'assets/logo.png', 'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
+        'logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
+      ],
       () => { logoFallback.hidden = true; },
       () => { logoImg.remove(); }
     );
@@ -141,7 +146,10 @@
   if (portraitImg) {
     loadFirst(
       portraitImg,
-      ['assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png', 'assets/portrait.webp'],
+      [
+        'assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png', 'assets/portrait.webp',
+        'portrait.jpg', 'portrait.jpeg', 'portrait.png', 'portrait.webp',
+      ],
       null,
       () => { portraitImg.remove(); }
     );
