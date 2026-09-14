@@ -20,8 +20,8 @@
     #9098c8 34%, #4d5182 42%, #e4e7fa 52%, #aab0dc 60%,
     #666c9c 70%, #f5f6ff 80%, #8890c0 90%, #eef0fb 100%);
 
-  --radius-box: 8px;
-  --radius-sm: 4px;
+  --radius-box: 2px;
+  --radius-sm: 2px;
 }
 
 html { scroll-behavior: smooth; }
@@ -57,35 +57,20 @@ ul { list-style: none; }
 }
 
 /* ---------- Synthwave grid background ---------- */
-/* Flat layer: uniform, artifact-free grid visible across the whole viewport. */
+/* Single flat, uniform grid layer — no 3D/perspective layer competing
+   with it. A gentle bottom-weighted opacity ramp gives a sense of
+   "grounding" without a second pattern overlapping the first. */
 .grid-flat {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(167, 139, 250, 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(94, 234, 212, 0.28) 1px, transparent 1px);
+    linear-gradient(rgba(167, 139, 250, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 234, 212, 0.35) 1px, transparent 1px);
   background-size: 56px 56px, 56px 56px;
-  opacity: 0.5;
-}
-
-/* Floor layer: tilted accent near the bottom, kept short enough that it
-   never approaches the perspective's vanishing point (which is what was
-   causing the lines to bunch up and overlap when this was 100vh tall). */
-.grid-floor {
-  position: fixed;
-  inset: auto 0 0 0;
-  height: 38vh;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(167, 139, 250, 0.7) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(94, 234, 212, 0.55) 1px, transparent 1px);
-  background-size: 56px 56px, 56px 56px;
-  transform: perspective(900px) rotateX(50deg);
-  transform-origin: bottom center;
-  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 100%);
+  mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 100%);
 }
 
 /* ---------- Topbar ---------- */
@@ -266,11 +251,17 @@ ul { list-style: none; }
   border-radius: var(--radius-sm);
   border: 1.5px dashed var(--border-strong);
   background: linear-gradient(160deg, rgba(139, 92, 246, 0.14), rgba(94, 234, 212, 0.08));
-  overflow: hidden;
 }
 
 .portrait-frame.has-photo {
   border-style: solid;
+}
+
+.portrait-clip {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 .portrait-fallback {
