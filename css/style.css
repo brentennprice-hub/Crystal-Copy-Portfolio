@@ -14,6 +14,10 @@
 
   --holo: linear-gradient(100deg, #a78bfa 0%, #60a5fa 26%, #5eead4 52%, #f472b6 78%, #a78bfa 100%);
   --titlebar: linear-gradient(180deg, #4a3a78 0%, #34274f 100%);
+  --chrome: linear-gradient(100deg,
+    #eef0fb 0%, #b8bfe0 8%, #6d72a0 16%, #f5f6ff 26%,
+    #9098c8 34%, #4d5182 42%, #e4e7fa 52%, #aab0dc 60%,
+    #666c9c 70%, #f5f6ff 80%, #8890c0 90%, #eef0fb 100%);
 
   --radius-box: 8px;
   --radius-sm: 4px;
@@ -82,24 +86,36 @@ ul { list-style: none; }
 .logo {
   font-family: "Orbitron", system-ui, sans-serif;
   font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 0.02em;
-  background: var(--holo);
-  background-size: 200% 200%;
+  font-family: "Lobster", "Brush Script MT", cursive;
+  font-size: 30px;
+  letter-spacing: 0.01em;
+  background: var(--chrome);
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: holoShift 8s ease-in-out infinite;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.5),
+    1px 2px 1px rgba(20,14,40,0.55),
+    2px 4px 6px rgba(0,0,0,0.45);
+  animation: chromeSweep 7s ease-in-out infinite;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .logo .spark {
   -webkit-text-fill-color: initial;
   background: none;
-  color: #5eead4;
-  font-size: 15px;
+  text-shadow: none;
+  color: #cdd3f0;
+  font-size: 17px;
+  filter: drop-shadow(0 0 4px rgba(196, 181, 253, 0.8));
+}
+
+@keyframes chromeSweep {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .nav {
