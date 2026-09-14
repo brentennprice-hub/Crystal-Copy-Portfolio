@@ -57,10 +57,26 @@ ul { list-style: none; }
 }
 
 /* ---------- Synthwave grid background ---------- */
+/* Flat layer: uniform, artifact-free grid visible across the whole viewport. */
+.grid-flat {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(167, 139, 250, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 234, 212, 0.28) 1px, transparent 1px);
+  background-size: 56px 56px, 56px 56px;
+  opacity: 0.5;
+}
+
+/* Floor layer: tilted accent near the bottom, kept short enough that it
+   never approaches the perspective's vanishing point (which is what was
+   causing the lines to bunch up and overlap when this was 100vh tall). */
 .grid-floor {
   position: fixed;
   inset: auto 0 0 0;
-  height: 100vh;
+  height: 38vh;
   z-index: 0;
   pointer-events: none;
   background-image:
@@ -289,7 +305,7 @@ ul { list-style: none; }
   object-fit: cover;
   object-position: 50% 10%;
   transform: scale(1.9);
-  transform-origin: 50% 8%;
+  transform-origin: 54% 8%;
 }
 
 .traits {
@@ -367,7 +383,6 @@ ul { list-style: none; }
 .hero h1 .dim { color: var(--text-faint); }
 
 .hero h1 .pop {
-  font-style: italic;
   background: var(--holo);
   background-size: 200% 200%;
   -webkit-background-clip: text;
