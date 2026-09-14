@@ -180,6 +180,11 @@ ul { list-style: none; }
 
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; }
+  /* Lead with the hero + email wall on mobile; sidebar (bio/services)
+     follows instead of pushing them below the fold. Desktop keeps its
+     side-by-side order untouched — this only reorders the stacked
+     single-column flow. */
+  .main { order: -1; }
 }
 
 /* ---------- Sidebar: boxy window-chrome panels ---------- */
