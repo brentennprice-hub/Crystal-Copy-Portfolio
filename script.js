@@ -1,15 +1,15 @@
 (() => {
   // Email campaign images: replace/add entries here to update the wall.
   const images = [
-    { name: 'LS', width: 700, height: 1539, src: 'assets/emails/00_LS.webp' },
-    { name: 'AYOH', width: 700, height: 1763, src: 'assets/emails/01_AYOH.webp' },
-    { name: 'EUROCAR', width: 700, height: 1647, src: 'assets/emails/02_EUROCAR.webp' },
-    { name: 'OT', width: 700, height: 1273, src: 'assets/emails/03_OT.webp' },
-    { name: 'FB', width: 700, height: 1575, src: 'assets/emails/04_FB.webp' },
-    { name: 'IM8', width: 700, height: 1435, src: 'assets/emails/05_IM8.webp' },
-    { name: 'MAC', width: 700, height: 1281, src: 'assets/emails/06_MAC.webp' },
-    { name: 'BOOM', width: 700, height: 1490, src: 'assets/emails/07_BOOM.webp' },
-    { name: 'FLING', width: 700, height: 1657, src: 'assets/emails/08_FLING.webp' },
+    { name: 'LS', width: 700, height: 1539, src: '00_LS.webp' },
+    { name: 'AYOH', width: 700, height: 1763, src: '01_AYOH.webp' },
+    { name: 'EUROCAR', width: 700, height: 1647, src: '02_EUROCAR.webp' },
+    { name: 'OT', width: 700, height: 1273, src: '03_OT.webp' },
+    { name: 'FB', width: 700, height: 1575, src: '04_FB.webp' },
+    { name: 'IM8', width: 700, height: 1435, src: '05_IM8.webp' },
+    { name: 'MAC', width: 700, height: 1281, src: '06_MAC.webp' },
+    { name: 'BOOM', width: 700, height: 1490, src: '07_BOOM.webp' },
+    { name: 'FLING', width: 700, height: 1657, src: '08_FLING.webp' },
   ];
 
   const pixelsPerSecond = 26; // Increase for faster scrolling.
