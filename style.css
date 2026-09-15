@@ -351,9 +351,11 @@ ul { list-style: none; }
 
 .checkbox {
   flex-shrink: 0;
-  position: relative;
-  width: 14px;
-  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
   margin-top: 2px;
   border: 1.5px solid var(--glow);
   border-radius: 2px;
@@ -362,20 +364,26 @@ ul { list-style: none; }
 
 .checkbox::after {
   content: "";
-  position: absolute;
-  left: 3px;
-  top: 1px;
   width: 5px;
   height: 8px;
+  margin-top: -1.5px;
   border-right: 1.5px solid var(--glow);
   border-bottom: 1.5px solid var(--glow);
-  transform: rotate(45deg);
+  transform: rotate(40deg);
   filter: drop-shadow(0 0 3px rgba(196, 181, 253, 0.8));
 }
 
-.services-tagline {
-  font-size: 14px;
-  line-height: 1.4;
+.sidebar-tagline {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* A tiny CSS-built "early internet button" instead of a sourced GIF:
@@ -638,8 +646,8 @@ ul { list-style: none; }
 }
 
 /* Chunky, segmented DOS/Win95-style loading bar — built from repeating
-   blocks (not a smooth fill) for the retro-digital read, with an
-   animated glow sweep layered on top for a more futuristic edge. */
+   blocks for the retro-digital read. Stuck at a static ~30% with a
+   slow pulsating glow rather than an actively filling animation. */
 .update-progress-track {
   position: relative;
   height: 22px;
@@ -653,7 +661,7 @@ ul { list-style: none; }
 
 .update-progress-segments {
   height: 100%;
-  width: 0%;
+  width: 30%;
   background-image: repeating-linear-gradient(
     90deg,
     var(--glow) 0px,
@@ -661,37 +669,12 @@ ul { list-style: none; }
     transparent 10px,
     transparent 14px
   );
-  background-size: 700px 100%;
-  filter: drop-shadow(0 0 5px rgba(196, 181, 253, 0.85));
-  animation: updateSegmentsFill 3.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+  animation: updateGlowPulse 2.8s ease-in-out infinite;
 }
 
-/* Positioned as a sibling (not inside the growing segments bar) so its
-   left:% is relative to the stable track width, giving a clean sweep
-   all the way across regardless of how far the fill has grown. */
-.update-progress-sweep {
-  position: absolute;
-  top: 3px;
-  bottom: 3px;
-  width: 50px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.85) 50%,
-    transparent 100%
-  );
-  mix-blend-mode: overlay;
-  animation: updateSegmentsSweep 3.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
-}
-
-@keyframes updateSegmentsFill {
-  0% { width: 0%; }
-  75%, 100% { width: 94%; }
-}
-
-@keyframes updateSegmentsSweep {
-  0% { left: -50px; }
-  75%, 100% { left: 96%; }
+@keyframes updateGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(196, 181, 253, 0.5)); opacity: 0.8; }
+  50% { filter: drop-shadow(0 0 9px rgba(196, 181, 253, 1)); opacity: 1; }
 }
 
 .update-subheading {
