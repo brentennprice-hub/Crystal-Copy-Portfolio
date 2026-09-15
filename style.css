@@ -601,6 +601,83 @@ ul { list-style: none; }
   min-height: 1em;
 }
 
+/* ---------- Copy update notice (wide window box) ---------- */
+.update-section {
+  margin-top: 44px;
+  text-align: center;
+}
+
+.update-headline {
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.update-box {
+  width: 100%;
+  text-align: left;
+}
+
+.update-box-body {
+  padding: 20px 22px 24px;
+}
+
+.update-heading {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.update-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.update-progress-fill {
+  flex: 1;
+  height: 16px;
+  border: 1.5px solid var(--glow);
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(196, 181, 253, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.update-progress-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 2%;
+  background: var(--glow);
+  box-shadow: 0 0 10px rgba(196, 181, 253, 0.9);
+  animation: updateProgressPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes updateProgressPulse {
+  0%, 100% { width: 1.5%; opacity: 0.75; }
+  50% { width: 3%; opacity: 1; }
+}
+
+.update-progress-label {
+  flex-shrink: 0;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  color: var(--glow);
+  text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
+}
+
+.update-subheading {
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
 /* ---------- Footer / CTA ---------- */
 .cta {
   padding: 72px 0 60px;
