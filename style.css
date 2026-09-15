@@ -211,11 +211,17 @@ ul { list-style: none; }
 
 @media (max-width: 860px) {
   .layout { grid-template-columns: 1fr; }
-  /* Lead with the hero + email wall on mobile; sidebar (bio/services)
-     follows instead of pushing them below the fold. Desktop keeps its
-     side-by-side order untouched — this only reorders the stacked
-     single-column flow. */
-  .main { order: -1; }
+  /* Lead with the hero + email wall, then the sidebar (bio/services),
+     then Copy Update Required last. <main>'s children are spliced
+     into .layout's own grid (display: contents) so each section can
+     be ordered independently of the sidebar. Desktop keeps its
+     side-by-side layout untouched — this only affects the mobile
+     single-column stack. */
+  .main { display: contents; }
+  .hero { order: 1; min-width: 0; }
+  .wall-section { order: 2; min-width: 0; }
+  .sidebar { order: 3; }
+  .update-section { order: 4; min-width: 0; }
 }
 
 /* ---------- Sidebar: boxy window-chrome panels ---------- */
@@ -721,7 +727,6 @@ ul { list-style: none; }
   font-size: clamp(26px, 4vw, 44px);
   font-weight: 900;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
   margin-bottom: 20px;
 }
 
