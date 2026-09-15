@@ -485,10 +485,8 @@ ul { list-style: none; }
   letter-spacing: 0;
   color: var(--text);
   max-width: 20ch;
-  text-transform: lowercase;
 }
 
-.hero h1::first-letter { text-transform: uppercase; }
 
 .hero h1 .dim { color: var(--text-faint); }
 
