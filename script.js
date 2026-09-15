@@ -143,8 +143,8 @@
         'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
         'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
       ],
-      () => { logoFallback.hidden = true; logoImg.classList.add('is-loaded'); },
-      () => { logoImg.remove(); }
+      () => { logoImg.classList.add('is-loaded'); },
+      () => { logoImg.remove(); logoFallback.hidden = false; }
     );
   }
 
