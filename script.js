@@ -131,10 +131,15 @@
   const logoImg = document.getElementById('logo-img');
   const logoFallback = document.getElementById('logo-fallback');
   if (logoImg) {
+    // Cache-busted so a browser holding an older logo.png (same filename,
+    // different content) always fetches the current one instead of
+    // flashing the stale cached copy. Bump this version whenever the
+    // logo file changes again.
+    const logoVersion = 'v=3';
     loadFirst(
       logoImg,
       [
-        'logo.png', 'assets/logo.png',
+        `logo.png?${logoVersion}`, `assets/logo.png?${logoVersion}`,
         'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
         'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
       ],
