@@ -416,6 +416,66 @@ ul { list-style: none; }
   gap: 8px;
 }
 
+/* Idea -> click sequence: a glowing bulb and an arrow nudge toward the
+   button right before it presses, so the loop reads left-to-right. */
+.idea-bulb {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6d8, #ffd166 55%, #d99a2b 100%);
+  box-shadow: 0 0 4px rgba(255, 209, 102, 0.4);
+  animation: bulbGlow 2.6s ease-in-out infinite;
+}
+
+.idea-bulb::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 6px;
+  height: 3px;
+  transform: translateX(-50%);
+  background: #8a7a55;
+  border-radius: 1px;
+}
+
+@keyframes bulbGlow {
+  0%, 60%, 100% { box-shadow: 0 0 4px rgba(255, 209, 102, 0.4); opacity: 0.75; }
+  75% { box-shadow: 0 0 12px rgba(255, 209, 102, 1); opacity: 1; }
+}
+
+.idea-arrow {
+  color: var(--glow);
+  font-size: 13px;
+  text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
+  animation: arrowNudge 2.6s ease-in-out infinite;
+}
+
+@keyframes arrowNudge {
+  0%, 60%, 100% { transform: translateX(0); opacity: 0.7; }
+  75% { transform: translateX(3px); opacity: 1; }
+}
+
+.click-button-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.click-finger {
+  position: absolute;
+  right: -7px;
+  bottom: -9px;
+  font-size: 15px;
+  transform-origin: bottom right;
+  animation: fingerTap 2.6s ease-in-out infinite;
+}
+
+@keyframes fingerTap {
+  0%, 75%, 100% { transform: translateY(0) rotate(0deg); }
+  82%, 90% { transform: translateY(2px) rotate(-6deg); }
+}
+
 /* A tiny CSS-built "early internet button" instead of a sourced GIF:
    a 3D-beveled button that loops a press animation on its own. */
 .click-button {
