@@ -147,8 +147,10 @@
     loadFirst(
       portraitImg,
       [
-        'assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png', 'assets/portrait.webp',
-        'portrait.jpg', 'portrait.jpeg', 'portrait.png', 'portrait.webp',
+        'assets/portrait.webp', 'portrait.webp',
+        'assets/portrait.gif', 'portrait.gif',
+        'assets/portrait.jpg', 'assets/portrait.jpeg', 'assets/portrait.png',
+        'portrait.jpg', 'portrait.jpeg', 'portrait.png',
         'IMG_9787.jpg',
       ],
       () => { portraitImg.closest('.portrait-frame').classList.add('has-photo'); },

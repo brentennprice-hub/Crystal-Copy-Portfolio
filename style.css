@@ -315,10 +315,9 @@ ul { list-style: none; }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 10%;
-  transform: scale(1.9);
-  transform-origin: 54% 8%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: var(--bg-alt);
 }
 
 .traits {
