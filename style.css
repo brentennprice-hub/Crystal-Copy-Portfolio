@@ -186,10 +186,14 @@ ul { list-style: none; }
 .nav a:hover { color: var(--text); }
 
 .nav-primary {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--text);
-  border-bottom: 1px solid;
+  border-bottom: 2px solid;
   border-image: var(--holo) 1;
-  padding-bottom: 2px;
+  padding-bottom: 3px;
 }
 
 @keyframes holoShift {
@@ -636,9 +640,9 @@ ul { list-style: none; }
   min-height: 1em;
 }
 
-/* ---------- Copy update notice (wide window box) ---------- */
+/* ---------- Copy update notice ---------- */
 .update-section {
-  margin-top: 44px;
+  margin-top: 28px;
   text-align: center;
 }
 
