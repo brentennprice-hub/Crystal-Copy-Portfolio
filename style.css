@@ -25,6 +25,22 @@
   --radius-sm: 2px;
 }
 
+/* Self-hosted custom font for the hero headline. Files go at the repo
+   root (upload latin.woff2 and/or latin.ttf) — until they exist, the
+   @font-face src simply fails to load and .hero h1's font-family list
+   falls through to Big Shoulders Display, so nothing breaks either way. */
+@font-face {
+  font-family: "Latin";
+  src:
+    url("latin.woff2") format("woff2"),
+    url("latin.woff") format("woff"),
+    url("latin.otf") format("opentype"),
+    url("latin.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -460,7 +476,7 @@ ul { list-style: none; }
 .hero { padding: 10px 0 40px; }
 
 .hero h1 {
-  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Latin", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(34px, 5.4vw, 60px);
   font-weight: 900;
   line-height: 1.04;
