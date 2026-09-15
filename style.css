@@ -478,17 +478,14 @@ ul { list-style: none; }
 .hero { padding: 10px 0 40px; }
 
 .hero h1 {
-  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(34px, 5.4vw, 60px);
   font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: 0;
+  line-height: 1.04;
+  letter-spacing: -0.005em;
   color: var(--text);
-  max-width: 20ch;
+  max-width: 17ch;
 }
-
-.hero h1 .line-caps { text-transform: uppercase; }
-.hero h1 .line-lower { text-transform: lowercase; }
 
 .hero h1 .dim { color: var(--text-faint); }
 
