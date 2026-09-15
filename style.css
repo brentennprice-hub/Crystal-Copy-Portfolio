@@ -48,7 +48,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Share Tech Mono", "Courier New", monospace;
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -647,7 +647,7 @@ ul { list-style: none; }
 }
 
 .update-headline {
-  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Orbitron", system-ui, sans-serif;
   font-size: clamp(26px, 4vw, 44px);
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -720,7 +720,7 @@ ul { list-style: none; }
 }
 
 .cta h2 {
-  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Orbitron", system-ui, sans-serif;
   font-size: clamp(28px, 4.2vw, 46px);
   font-weight: 900;
   letter-spacing: -0.005em;
