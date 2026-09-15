@@ -125,9 +125,17 @@ ul { list-style: none; }
 
 .logo-img {
   display: block;
-  width: 234px;
+  /* Sized so the "C"..."y" letters span the ABOUT.TXT box's full 270px
+     outer width; the trailing spark in the art bleeds past that edge. */
+  width: 287px;
   max-width: 55vw;
   height: auto;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.logo-img.is-loaded {
+  opacity: 1;
 }
 
 .logo-text {
