@@ -1,0 +1,831 @@
+/* ---------- Reset & tokens ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+:root {
+  --bg: #0a0712;
+  --bg-alt: #120c1e;
+  --panel: #130e20;
+  --panel-raised: #171129;
+  --border: rgba(196, 181, 253, 0.22);
+  --border-strong: rgba(196, 181, 253, 0.42);
+  --glow: #c4b5fd;
+  --text: #f4f2fa;
+  --text-dim: #d6d2e8;
+  --text-faint: #706a8c;
+
+  --holo: linear-gradient(100deg, #a78bfa 0%, #60a5fa 26%, #5eead4 52%, #f472b6 78%, #a78bfa 100%);
+  --titlebar: linear-gradient(180deg, #4a3a78 0%, #34274f 100%);
+  --chrome: linear-gradient(100deg,
+    #eef0fb 0%, #b8bfe0 8%, #6d72a0 16%, #f5f6ff 26%,
+    #9098c8 34%, #4d5182 42%, #e4e7fa 52%, #aab0dc 60%,
+    #666c9c 70%, #f5f6ff 80%, #8890c0 90%, #eef0fb 100%);
+
+  --radius-box: 2px;
+  --radius-sm: 2px;
+}
+
+/* Self-hosted variable font (Zalando Sans Expanded) for the hero
+   headline, both weight (200-900) and italic covered by two files. */
+@font-face {
+  font-family: "Zalando Sans Expanded";
+  src: url("zalando-sans-expanded.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zalando Sans Expanded";
+  src: url("zalando-sans-expanded-italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+h1, h2, .box-heading, .titlebar-label {
+  font-family: "Orbitron", system-ui, sans-serif;
+}
+
+.titlebar-label, .portrait-label, .trait dt, .service dt, .nav, .fine-print {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px) 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Synthwave grid background ---------- */
+/* Symmetric floor + ceiling "room" grid, single line color (mixing two
+   colors here previously is what read as "not uniform" once perspective
+   compressed them together). A large perspective distance + moderate
+   angle keeps compression gradual near each horizon, avoiding the
+   moire/bunching artifact steeper setups produced. */
+.grid-floor,
+.grid-ceiling {
+  position: fixed;
+  inset: auto 0 0 0;
+  height: 46vh;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(196, 181, 253, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 181, 253, 0.5) 1px, transparent 1px);
+  background-size: 56px 56px, 56px 56px;
+  transform: perspective(2400px) rotateX(46deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to top, black 0%, black 40%, transparent 100%);
+  opacity: 0.45;
+}
+
+.grid-ceiling {
+  inset: 0 0 auto 0;
+  transform: perspective(2400px) rotateX(-46deg);
+  transform-origin: top center;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
+
+/* ---------- Topbar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 26px 0 46px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  display: block;
+  /* Sized so the "C"..."y" letters span the ABOUT.TXT box's full 270px
+     outer width; the trailing spark in the art bleeds past that edge. */
+  width: 287px;
+  max-width: 55vw;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.logo-img.is-loaded {
+  opacity: 1;
+}
+
+.logo-text {
+  font-family: "Lobster", "Brush Script MT", cursive;
+  font-size: 30px;
+  letter-spacing: 0.01em;
+  background: var(--chrome);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.5),
+    1px 2px 1px rgba(20,14,40,0.55),
+    2px 4px 6px rgba(0,0,0,0.45);
+  animation: chromeSweep 7s ease-in-out infinite;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-text .spark {
+  -webkit-text-fill-color: initial;
+  background: none;
+  text-shadow: none;
+  color: #cdd3f0;
+  font-size: 17px;
+  filter: drop-shadow(0 0 4px rgba(196, 181, 253, 0.8));
+}
+
+@keyframes chromeSweep {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+}
+
+.nav a {
+  color: var(--text-dim);
+  transition: color .2s ease;
+}
+
+.nav a:hover { color: var(--text); }
+
+.nav-primary {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  border-bottom: 2px solid;
+  border-image: var(--holo) 1;
+  padding-bottom: 3px;
+}
+
+@keyframes holoShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 30px);
+  padding-bottom: 60px;
+}
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  /* Lead with the hero + email wall on mobile; sidebar (bio/services)
+     follows instead of pushing them below the fold. Desktop keeps its
+     side-by-side order untouched — this only reorders the stacked
+     single-column flow. */
+  .main { order: -1; }
+}
+
+/* ---------- Sidebar: boxy window-chrome panels ---------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+
+@media (max-width: 860px) {
+  .sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+  .sidebar .box { flex: 1 1 260px; }
+}
+
+.box {
+  border: 1.5px solid var(--glow);
+  border-radius: var(--radius-box);
+  background: rgba(19, 14, 32, 0.55);
+  overflow: hidden;
+  box-shadow:
+    0 0 6px rgba(196, 181, 253, 0.55),
+    0 0 22px rgba(167, 139, 250, 0.3),
+    inset 0 0 16px rgba(139, 92, 246, 0.08);
+}
+
+.box-titlebar, .wall-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 14px;
+  background: rgba(139, 92, 246, 0.06);
+  border-bottom: 1.5px solid var(--glow);
+  box-shadow: 0 1px 10px rgba(167, 139, 250, 0.35);
+}
+
+.titlebar-label {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--glow);
+  text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
+  flex: 1;
+}
+
+.winctl-group {
+  display: flex;
+  gap: 5px;
+}
+
+.winctl {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--glow);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--glow);
+  background: transparent;
+  box-shadow: 0 0 4px rgba(196, 181, 253, 0.4);
+}
+
+.box-heading {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.box-body {
+  padding: 16px 16px 20px;
+}
+
+.portrait-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 500 / 541;
+  margin: 0 0 18px;
+  border-radius: var(--radius-sm);
+  border: 1.5px dashed var(--border-strong);
+  background: linear-gradient(160deg, rgba(139, 92, 246, 0.14), rgba(94, 234, 212, 0.08));
+}
+
+.portrait-frame.has-photo {
+  border-style: solid;
+}
+
+.portrait-clip {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.portrait-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.portrait-plus {
+  font-family: "Orbitron", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--border-strong);
+}
+
+.portrait-label {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: var(--bg-alt);
+}
+
+.traits {
+  display: flex;
+  flex-direction: column;
+}
+
+.trait {
+  padding: 11px 0;
+  border-top: 1px solid var(--border);
+}
+
+.trait:first-child { border-top: none; padding-top: 0; }
+
+.trait dt {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a8ecdc;
+  margin-bottom: 4px;
+}
+
+.trait dd {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
+.checkbox {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  border: 1.5px solid var(--glow);
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(196, 181, 253, 0.6);
+}
+
+.checkbox::after {
+  content: "";
+  width: 5px;
+  height: 8px;
+  margin-top: -1.5px;
+  border-right: 1.5px solid var(--glow);
+  border-bottom: 1.5px solid var(--glow);
+  transform: rotate(40deg);
+  filter: drop-shadow(0 0 3px rgba(196, 181, 253, 0.8));
+}
+
+.sidebar-tagline {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Idea -> click sequence: a glowing bulb and an arrow nudge toward the
+   button right before it presses, so the loop reads left-to-right. The
+   bulb is sized to match the button's own height - big idea, tiny button. */
+.idea-bulb {
+  position: relative;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff6d8, #ffd166 55%, #d99a2b 100%);
+  box-shadow: 0 0 4px rgba(255, 209, 102, 0.4);
+  animation: bulbGlow 2.6s ease-in-out infinite;
+}
+
+.idea-bulb::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 10px;
+  height: 5px;
+  transform: translateX(-50%);
+  background: #8a7a55;
+  border-radius: 1px;
+}
+
+@keyframes bulbGlow {
+  0%, 60%, 100% { box-shadow: 0 0 4px rgba(255, 209, 102, 0.4); opacity: 0.75; }
+  75% { box-shadow: 0 0 12px rgba(255, 209, 102, 1); opacity: 1; }
+}
+
+.idea-arrow {
+  color: var(--glow);
+  font-size: 13px;
+  text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
+  animation: arrowNudge 2.6s ease-in-out infinite;
+}
+
+@keyframes arrowNudge {
+  0%, 60%, 100% { transform: translateX(0); opacity: 0.7; }
+  75% { transform: translateX(3px); opacity: 1; }
+}
+
+.click-button-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.click-finger {
+  position: absolute;
+  right: -7px;
+  bottom: -9px;
+  font-size: 15px;
+  transform-origin: bottom right;
+  animation: fingerTap 2.6s ease-in-out infinite;
+}
+
+@keyframes fingerTap {
+  0%, 75%, 100% { transform: translateY(0) rotate(0deg); }
+  82%, 90% { transform: translateY(2px) rotate(-6deg); }
+}
+
+/* A tiny CSS-built "early internet button" instead of a sourced GIF:
+   a 3D-beveled button that loops a press animation on its own. */
+.click-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  padding: 3px 9px 4px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #241a38;
+  background: linear-gradient(180deg, #efe9ff 0%, #c3b3f5 55%, #a290ea 100%);
+  border: 1px solid #7a67b8;
+  border-radius: 3px;
+  box-shadow:
+    inset -1px -1px 0 rgba(40, 24, 66, 0.45),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.75),
+    0 0 8px rgba(196, 181, 253, 0.55);
+  vertical-align: middle;
+  transform: translateY(0);
+  animation: clickButtonPress 2.6s ease-in-out infinite;
+}
+
+@keyframes clickButtonPress {
+  0%, 75%, 100% {
+    transform: translateY(0);
+    box-shadow:
+      inset -1px -1px 0 rgba(40, 24, 66, 0.45),
+      inset 1px 1px 0 rgba(255, 255, 255, 0.75),
+      0 0 8px rgba(196, 181, 253, 0.55);
+  }
+  82%, 90% {
+    transform: translateY(1.5px);
+    box-shadow:
+      inset 1px 1px 0 rgba(40, 24, 66, 0.4),
+      inset -1px -1px 0 rgba(255, 255, 255, 0.35),
+      0 0 4px rgba(196, 181, 253, 0.35);
+  }
+}
+
+.services {
+  display: flex;
+  flex-direction: column;
+}
+
+.service {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.service:first-child { border-top: none; padding-top: 0; }
+
+.service dt {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #a8ecdc;
+  margin-bottom: 4px;
+}
+
+.service dd {
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
+/* ---------- Main / Hero ---------- */
+.main { min-width: 0; }
+
+.hero { padding: 10px 0 40px; }
+
+.hero h1 {
+  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: clamp(34px, 5.4vw, 60px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0;
+  color: var(--text);
+  max-width: 20ch;
+}
+
+
+.hero h1 .dim { color: var(--text-faint); }
+
+.hero h1 .pop {
+  background: var(--holo);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: holoShift 6s ease-in-out infinite;
+}
+
+.subhead {
+  margin-top: 22px;
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: var(--text-dim);
+  max-width: 46ch;
+}
+
+/* ---------- Wall (email scroll animation) ---------- */
+.wall-section { margin-top: 8px; }
+
+.wall-titlebar {
+  border-radius: var(--radius-box) var(--radius-box) 0 0;
+  border: 1.5px solid var(--glow);
+  border-bottom: 1.5px solid var(--glow);
+  box-shadow:
+    0 0 6px rgba(196, 181, 253, 0.55),
+    0 0 22px rgba(167, 139, 250, 0.3);
+}
+
+#pause {
+  background: rgba(255,255,255,0.08);
+  color: #e4defc;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-sm);
+  padding: 5px 11px;
+  font: inherit;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#pause:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.55);
+}
+
+#pause:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 2px;
+}
+
+.pause-icon {
+  display: inline-block;
+  position: relative;
+  width: 9px;
+  height: 11px;
+}
+
+.pause-icon::before,
+.pause-icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: currentColor;
+}
+
+.pause-icon::before { left: 0; }
+.pause-icon::after { right: 0; }
+
+#pause.is-paused .pause-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5.5px 0 5.5px 9px;
+  border-color: transparent transparent transparent currentColor;
+}
+
+#pause.is-paused .pause-icon::before,
+#pause.is-paused .pause-icon::after {
+  content: none;
+}
+
+.wall {
+  --gap: clamp(10px, 1.6vw, 18px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  height: clamp(420px, 72vw, 760px);
+  padding: var(--gap);
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-box) var(--radius-box);
+  border: 1.5px solid var(--glow);
+  border-top: none;
+  background: var(--bg-alt);
+  position: relative;
+  box-shadow:
+    0 0 6px rgba(196, 181, 253, 0.55),
+    0 0 22px rgba(167, 139, 250, 0.3);
+}
+
+.wall::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(180deg, var(--bg-alt) 0%, transparent 10%, transparent 90%, var(--bg-alt) 100%);
+}
+
+.column { min-width: 0; }
+.track { will-change: transform; }
+.group { display: flex; flex-direction: column; gap: var(--gap); padding-bottom: var(--gap); }
+.card {
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+.card img { display: block; width: 100%; height: auto; }
+
+.wall.reduced { overflow-y: auto; }
+.wall.reduced .track { transform: none !important; will-change: auto; }
+.wall.reduced .group[aria-hidden] { display: none; }
+.wall.reduced::before { display: none; }
+
+.notice {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  min-height: 1em;
+}
+
+/* ---------- Copy update notice ---------- */
+.update-section {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.update-headline {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.update-box {
+  width: 100%;
+  text-align: left;
+}
+
+.update-box-body {
+  padding: 20px 22px 24px;
+}
+
+.update-heading {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.update-progress {
+  margin-bottom: 16px;
+}
+
+/* Chunky, segmented DOS/Win95-style loading bar — built from repeating
+   blocks for the retro-digital read. Stuck at a static ~30% with a
+   slow pulsating glow rather than an actively filling animation. */
+.update-progress-track {
+  position: relative;
+  height: 22px;
+  padding: 3px;
+  border: 1.5px solid var(--glow);
+  border-radius: 2px;
+  background: rgba(10, 7, 18, 0.6);
+  box-shadow: 0 0 6px rgba(196, 181, 253, 0.5), inset 0 0 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.update-progress-segments {
+  height: 100%;
+  width: 30%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--glow) 0px,
+    var(--glow) 10px,
+    transparent 10px,
+    transparent 14px
+  );
+  animation: updateGlowPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes updateGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(196, 181, 253, 0.5)); opacity: 0.8; }
+  50% { filter: drop-shadow(0 0 9px rgba(196, 181, 253, 1)); opacity: 1; }
+}
+
+.update-subheading {
+  font-size: 13.5px;
+  color: var(--text-dim);
+}
+
+/* ---------- Footer / CTA ---------- */
+.cta {
+  padding: 72px 0 60px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 900;
+  letter-spacing: -0.005em;
+}
+
+.email-link {
+  display: inline-block;
+  margin-top: 22px;
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 900;
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  background: var(--holo);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: holoShift 9s ease-in-out infinite;
+  transition: opacity .2s ease;
+}
+
+.email-link:hover { opacity: 0.8; }
+
+.cta-row {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-top {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dim);
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.back-to-top:hover {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.fine-print {
+  font-size: 12px;
+  color: var(--text-faint);
+}
