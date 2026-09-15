@@ -417,11 +417,12 @@ ul { list-style: none; }
 }
 
 /* Idea -> click sequence: a glowing bulb and an arrow nudge toward the
-   button right before it presses, so the loop reads left-to-right. */
+   button right before it presses, so the loop reads left-to-right. The
+   bulb is sized to match the button's own height - big idea, tiny button. */
 .idea-bulb {
   position: relative;
-  width: 13px;
-  height: 13px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #fff6d8, #ffd166 55%, #d99a2b 100%);
   box-shadow: 0 0 4px rgba(255, 209, 102, 0.4);
@@ -432,9 +433,9 @@ ul { list-style: none; }
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -3px;
-  width: 6px;
-  height: 3px;
+  bottom: -5px;
+  width: 10px;
+  height: 5px;
   transform: translateX(-50%);
   background: #8a7a55;
   border-radius: 1px;
