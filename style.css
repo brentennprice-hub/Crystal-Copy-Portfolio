@@ -25,6 +25,24 @@
   --radius-sm: 2px;
 }
 
+/* Self-hosted variable font (Zalando Sans Expanded) for the hero
+   headline, both weight (200-900) and italic covered by two files. */
+@font-face {
+  font-family: "Zalando Sans Expanded";
+  src: url("zalando-sans-expanded.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zalando Sans Expanded";
+  src: url("zalando-sans-expanded-italic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -460,14 +478,17 @@ ul { list-style: none; }
 .hero { padding: 10px 0 40px; }
 
 .hero h1 {
-  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(34px, 5.4vw, 60px);
   font-weight: 900;
-  line-height: 1.04;
-  letter-spacing: -0.005em;
+  line-height: 1.08;
+  letter-spacing: 0;
   color: var(--text);
-  max-width: 17ch;
+  max-width: 20ch;
 }
+
+.hero h1 .line-caps { text-transform: uppercase; }
+.hero h1 .line-lower { text-transform: lowercase; }
 
 .hero h1 .dim { color: var(--text-faint); }
 
