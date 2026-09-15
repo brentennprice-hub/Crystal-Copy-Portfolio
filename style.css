@@ -125,9 +125,15 @@ ul { list-style: none; }
 
 .logo-img {
   display: block;
-  width: 234px;
+  width: 235px;
   max-width: 55vw;
   height: auto;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.logo-img.is-loaded {
+  opacity: 1;
 }
 
 .logo-text {

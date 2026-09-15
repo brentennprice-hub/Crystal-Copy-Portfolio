@@ -134,10 +134,11 @@
     loadFirst(
       logoImg,
       [
-        'assets/logo.png', 'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
-        'logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
+        'logo.png', 'assets/logo.png',
+        'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
+        'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
       ],
-      () => { logoFallback.hidden = true; },
+      () => { logoFallback.hidden = true; logoImg.classList.add('is-loaded'); },
       () => { logoImg.remove(); }
     );
   }
