@@ -634,43 +634,64 @@ ul { list-style: none; }
 }
 
 .update-progress {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-bottom: 16px;
 }
 
-.update-progress-fill {
-  flex: 1;
-  height: 16px;
+/* Chunky, segmented DOS/Win95-style loading bar — built from repeating
+   blocks (not a smooth fill) for the retro-digital read, with an
+   animated glow sweep layered on top for a more futuristic edge. */
+.update-progress-track {
+  position: relative;
+  height: 22px;
+  padding: 3px;
   border: 1.5px solid var(--glow);
   border-radius: 2px;
-  box-shadow: 0 0 6px rgba(196, 181, 253, 0.5);
-  position: relative;
+  background: rgba(10, 7, 18, 0.6);
+  box-shadow: 0 0 6px rgba(196, 181, 253, 0.5), inset 0 0 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
-.update-progress-fill::before {
-  content: "";
+.update-progress-segments {
+  height: 100%;
+  width: 0%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--glow) 0px,
+    var(--glow) 10px,
+    transparent 10px,
+    transparent 14px
+  );
+  background-size: 700px 100%;
+  filter: drop-shadow(0 0 5px rgba(196, 181, 253, 0.85));
+  animation: updateSegmentsFill 3.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+}
+
+/* Positioned as a sibling (not inside the growing segments bar) so its
+   left:% is relative to the stable track width, giving a clean sweep
+   all the way across regardless of how far the fill has grown. */
+.update-progress-sweep {
   position: absolute;
-  inset: 0;
-  width: 2%;
-  background: var(--glow);
-  box-shadow: 0 0 10px rgba(196, 181, 253, 0.9);
-  animation: updateProgressPulse 2.4s ease-in-out infinite;
+  top: 3px;
+  bottom: 3px;
+  width: 50px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    transparent 100%
+  );
+  mix-blend-mode: overlay;
+  animation: updateSegmentsSweep 3.2s cubic-bezier(0.5, 0, 0.3, 1) infinite;
 }
 
-@keyframes updateProgressPulse {
-  0%, 100% { width: 1.5%; opacity: 0.75; }
-  50% { width: 3%; opacity: 1; }
+@keyframes updateSegmentsFill {
+  0% { width: 0%; }
+  75%, 100% { width: 94%; }
 }
 
-.update-progress-label {
-  flex-shrink: 0;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 13px;
-  color: var(--glow);
-  text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
+@keyframes updateSegmentsSweep {
+  0% { left: -50px; }
+  75%, 100% { left: 96%; }
 }
 
 .update-subheading {
