@@ -418,7 +418,16 @@ ul { list-style: none; }
 
 /* Idea -> click sequence: a glowing bulb and an arrow nudge toward the
    button right before it presses, so the loop reads left-to-right. The
-   bulb is sized to match the button's own height - big idea, tiny button. */
+   bulb is sized to match the button's own height - big idea, tiny button.
+   Grouped in one nowrap flex item so the sequence wraps as a whole
+   instead of splitting the arrow from the button on narrow screens. */
+.idea-flow {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
 .idea-bulb {
   position: relative;
   width: 23px;
