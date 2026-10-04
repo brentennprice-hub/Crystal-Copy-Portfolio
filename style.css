@@ -587,13 +587,8 @@ ul { list-style: none; }
 
 .hero h1 .dim { color: var(--glow); }
 
-/* A quiet metallic sheen rather than a glow: a soft highlight band
-   running through the base pink, not an animated or luminous effect. */
 .hero h1 .pop {
-  background: linear-gradient(100deg, #e78fe0 0%, #f9a4ef 30%, #fff5fd 50%, #f9a4ef 70%, #e78fe0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #f9a4ef;
 }
 
 /* Desktop reads "today." then breaks into "You'll remember one."; on
@@ -995,8 +990,8 @@ ul { list-style: none; }
 }
 
 .update-heading {
-  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: 18px;
+  font-family: "Chakra Petch", "Courier New", monospace;
+  font-size: 19px;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text);
