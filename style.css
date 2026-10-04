@@ -196,8 +196,7 @@ ul { list-style: none; }
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--text);
-  border-bottom: 2px solid;
-  border-image: var(--holo) 1;
+  border-bottom: 2px solid #fff;
   padding-bottom: 3px;
 }
 
@@ -588,9 +587,13 @@ ul { list-style: none; }
 
 .hero h1 .dim { color: var(--glow); }
 
+/* A quiet metallic sheen rather than a glow: a soft highlight band
+   running through the base pink, not an animated or luminous effect. */
 .hero h1 .pop {
-  color: #f9a4ef;
-  text-shadow: 0 0 10px rgba(249, 164, 239, 0.35);
+  background: linear-gradient(100deg, #e78fe0 0%, #f9a4ef 30%, #fff5fd 50%, #f9a4ef 70%, #e78fe0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Desktop reads "today." then breaks into "You'll remember one."; on
@@ -603,9 +606,6 @@ ul { list-style: none; }
 @media (max-width: 860px) {
   .hero-break-desktop { display: none; }
   .hero-break-mobile { display: inline; }
-  /* Glow reads stronger at mobile's smaller headline size relative to
-     the blur radius, so it's dialed back rather than reused as-is. */
-  .hero h1 .pop { text-shadow: 0 0 6px rgba(249, 164, 239, 0.3); }
 }
 
 .subhead {
@@ -977,9 +977,11 @@ ul { list-style: none; }
 
 .update-headline {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: clamp(26px, 4vw, 44px);
+  font-size: clamp(28px, 4.2vw, 46px);
   font-weight: 900;
-  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--text);
+  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -1044,13 +1046,12 @@ ul { list-style: none; }
 
 /* ---------- Footer / CTA ---------- */
 .cta {
-  padding: 72px 0 60px;
+  padding: 32px 0 60px;
   text-align: center;
 }
 
 .email-link {
   display: inline-block;
-  margin-top: 22px;
   font-size: clamp(19px, 2.4vw, 26px);
   font-weight: 900;
   font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
