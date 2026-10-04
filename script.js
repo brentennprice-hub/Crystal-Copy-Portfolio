@@ -127,9 +127,9 @@
   }
 
   // Checked in both assets/ and the repo root, since a manual GitHub upload
-  // may land in either place.
+  // may land in either place. Only ever visible below the 860px breakpoint
+  // (CSS) - desktop uses the plain-text .logo-text mark instead.
   const logoImg = document.getElementById('logo-img');
-  const logoFallback = document.getElementById('logo-fallback');
   if (logoImg) {
     // Cache-busted so a browser holding an older logo.png (same filename,
     // different content) always fetches the current one instead of
@@ -143,7 +143,7 @@
         'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.webp',
         'assets/logo.jpg', 'assets/logo.jpeg', 'assets/logo.svg', 'assets/logo.webp',
       ],
-      () => { logoFallback.hidden = true; logoImg.classList.add('is-loaded'); },
+      () => { logoImg.classList.add('is-loaded'); },
       () => { logoImg.remove(); }
     );
   }

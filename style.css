@@ -123,53 +123,39 @@ ul { list-style: none; }
   gap: 8px;
 }
 
+/* Desktop: crisp styled text, no raster image at all (the badge mark's
+   fine scanline pattern moirés at small sizes - see .hero-emblem for
+   the full-size version). Mobile keeps the existing image badge,
+   which already reads fine at its larger on-screen size there. */
 .logo-img {
-  display: block;
-  /* Near-square composite mark (vertical CRYSTAL/COPY type flanking
-     center art) - sized by height to sit in the topbar like a badge,
-     rather than the old wide wordmark's width-based sizing. */
-  height: 100px;
-  width: auto;
-  max-width: 55vw;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.logo-img.is-loaded {
-  opacity: 1;
+  display: none;
 }
 
 .logo-text {
-  font-family: "Lobster", "Brush Script MT", cursive;
-  font-size: 30px;
-  letter-spacing: 0.01em;
-  background: var(--chrome);
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.5),
-    1px 2px 1px rgba(20,14,40,0.55),
-    2px 4px 6px rgba(0,0,0,0.45);
-  animation: chromeSweep 7s ease-in-out infinite;
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  font-family: "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: #ff6ad5;
+  text-shadow: 0 0 10px rgba(255, 106, 213, 0.6), 0 0 22px rgba(255, 106, 213, 0.3);
 }
 
-.logo-text .spark {
-  -webkit-text-fill-color: initial;
-  background: none;
-  text-shadow: none;
-  color: #cdd3f0;
-  font-size: 17px;
-  filter: drop-shadow(0 0 4px rgba(196, 181, 253, 0.8));
-}
+@media (max-width: 860px) {
+  .logo-text { display: none; }
 
-@keyframes chromeSweep {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  .logo-img {
+    display: block;
+    height: 100px;
+    width: auto;
+    max-width: 55vw;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .logo-img.is-loaded {
+    opacity: 1;
+  }
 }
 
 .nav {
@@ -564,7 +550,32 @@ ul { list-style: none; }
 /* ---------- Main / Hero ---------- */
 .main { min-width: 0; }
 
-.hero { padding: 10px 0 40px; }
+.hero {
+  padding: 10px 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Fixed pixel size, exact-match srcset (no CSS scaling math) so the
+   emblem's fine scanline pattern never hits the moiré-prone browser
+   downscaling path that the small header badge did. */
+.hero-emblem {
+  display: block;
+  width: 440px;
+  height: 485px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .hero { display: block; }
+  .hero-emblem { display: none; }
+}
 
 .hero h1 {
   font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
