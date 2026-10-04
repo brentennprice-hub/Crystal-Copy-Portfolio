@@ -228,7 +228,8 @@ ul { list-style: none; }
   .wall-section { order: 3; min-width: 0; }
   .sidebar { order: 4; }
   .testimonial-section { order: 5; min-width: 0; }
-  .update-section { order: 6; min-width: 0; }
+  .clarity-section { order: 6; min-width: 0; }
+  .update-section { order: 7; min-width: 0; }
 }
 
 /* ---------- Sidebar: boxy window-chrome panels ---------- */
@@ -903,6 +904,38 @@ ul { list-style: none; }
   .testimonial-row .t-narrow {
     flex: 1 1 auto;
   }
+}
+
+/* ---------- Clarity pitch ---------- */
+.clarity-section { margin-top: 40px; }
+
+.clarity-headline {
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.clarity-body {
+  margin-top: 16px;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 60ch;
+}
+
+.clarity-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 28px;
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 860px) {
+  .clarity-section { margin-top: 28px; }
+  .clarity-video { margin-top: 20px; }
 }
 
 /* ---------- Copy update notice ---------- */
