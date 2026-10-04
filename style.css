@@ -596,7 +596,7 @@ ul { list-style: none; }
 }
 
 
-.hero h1 .dim { color: var(--glow); }
+.hero h1 .dim { color: inherit; }
 
 .hero h1 .pop {
   color: #f9a4ef;
