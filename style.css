@@ -572,7 +572,7 @@ ul { list-style: none; }
 /* ---------- Main / Hero ---------- */
 .main { min-width: 0; }
 
-.hero { padding: 0 0 40px; }
+.hero { padding: 0; }
 
 .hero h1 {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
@@ -606,8 +606,8 @@ ul { list-style: none; }
 
 /* ---------- Client logo marquee ---------- */
 .marquee-section {
-  margin-top: 48px;
-  margin-bottom: 28px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .marquee-label {
@@ -676,6 +676,10 @@ ul { list-style: none; }
 }
 
 @media (max-width: 860px) {
+  .marquee-section {
+    margin-top: calc(40px - clamp(18px, 3vw, 30px));
+    margin-bottom: calc(40px - clamp(18px, 3vw, 30px));
+  }
   .marquee-viewport {
     -webkit-mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
@@ -691,7 +695,7 @@ ul { list-style: none; }
 }
 
 /* ---------- Wall (email scroll animation) ---------- */
-.wall-section { margin-top: 8px; }
+.wall-section { margin-top: 0; }
 
 .wall-titlebar {
   border-radius: var(--radius-box) var(--radius-box) 0 0;
