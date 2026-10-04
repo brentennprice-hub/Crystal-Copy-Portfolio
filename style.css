@@ -226,8 +226,8 @@ ul { list-style: none; }
   .hero { order: 1; min-width: 0; }
   .marquee-section { order: 2; min-width: 0; }
   .wall-section { order: 3; min-width: 0; }
-  .testimonial-section { order: 4; min-width: 0; }
-  .sidebar { order: 5; }
+  .sidebar { order: 4; }
+  .testimonial-section { order: 5; min-width: 0; }
   .update-section { order: 6; min-width: 0; }
 }
 
