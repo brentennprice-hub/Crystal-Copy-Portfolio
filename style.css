@@ -224,9 +224,10 @@ ul { list-style: none; }
      single-column stack. */
   .main { display: contents; }
   .hero { order: 1; min-width: 0; }
-  .wall-section { order: 2; min-width: 0; }
-  .sidebar { order: 3; }
-  .update-section { order: 4; min-width: 0; }
+  .marquee-section { order: 2; min-width: 0; }
+  .wall-section { order: 3; min-width: 0; }
+  .sidebar { order: 4; }
+  .update-section { order: 5; min-width: 0; }
 }
 
 /* ---------- Sidebar: boxy window-chrome panels ---------- */
@@ -601,6 +602,91 @@ ul { list-style: none; }
   font-size: clamp(18px, 1.6vw, 21px);
   color: var(--text-dim);
   max-width: 46ch;
+}
+
+/* ---------- Client logo marquee ---------- */
+.marquee-section {
+  margin-top: 48px;
+}
+
+.marquee-label {
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 42s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 52px;
+  padding-right: 52px;
+}
+
+.marquee-logo {
+  display: block;
+  width: 130px;
+  height: 36px;
+  flex-shrink: 0;
+  background-color: #e6e1f2;
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: background-color 0.2s ease;
+}
+
+.marquee-logo:hover {
+  background-color: #ff5fd2;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  }
+  .marquee-logo {
+    width: 100px;
+    height: 28px;
+  }
+  .marquee-group {
+    gap: 34px;
+    padding-right: 34px;
+  }
 }
 
 /* ---------- Wall (email scroll animation) ---------- */
