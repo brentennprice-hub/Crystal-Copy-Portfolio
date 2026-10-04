@@ -607,6 +607,7 @@ ul { list-style: none; }
 /* ---------- Client logo marquee ---------- */
 .marquee-section {
   margin-top: 48px;
+  margin-bottom: 28px;
 }
 
 .marquee-label {
