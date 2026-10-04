@@ -285,10 +285,13 @@ ul { list-style: none; }
 }
 
 .box-heading {
-  font-size: 17px;
+  /* Sized to span the box's own content width (matches the portrait
+     image below it), faded back so the hero headline reads as the
+     page's loudest element by comparison. */
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.3;
-  color: var(--text);
+  line-height: 1.15;
+  color: var(--text-faint);
   margin-bottom: 16px;
 }
 
@@ -567,7 +570,6 @@ ul { list-style: none; }
   line-height: 1.08;
   letter-spacing: 0;
   color: var(--text);
-  max-width: 20ch;
 }
 
 
