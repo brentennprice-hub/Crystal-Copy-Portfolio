@@ -598,7 +598,7 @@ ul { list-style: none; }
 
 .subhead {
   margin-top: 22px;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(18px, 1.6vw, 21px);
   color: var(--text-dim);
   max-width: 46ch;
 }
