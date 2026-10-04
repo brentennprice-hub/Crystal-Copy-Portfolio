@@ -286,12 +286,12 @@ ul { list-style: none; }
 
 .box-heading {
   /* Sized to span the box's own content width (matches the portrait
-     image below it), faded back so the hero headline reads as the
-     page's loudest element by comparison. */
+     image below it); bright purple instead of white so the hero
+     headline still reads as the page's loudest element. */
   font-size: 24px;
   font-weight: 700;
   line-height: 1.15;
-  color: var(--text-faint);
+  color: var(--glow);
   margin-bottom: 16px;
 }
 
@@ -409,10 +409,10 @@ ul { list-style: none; }
 
 .sidebar-tagline {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: 15px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  line-height: 1.5;
+  line-height: 1.25;
   color: var(--text);
   display: flex;
   align-items: center;
@@ -561,7 +561,7 @@ ul { list-style: none; }
 /* ---------- Main / Hero ---------- */
 .main { min-width: 0; }
 
-.hero { padding: 10px 0 40px; }
+.hero { padding: 0 0 40px; }
 
 .hero h1 {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
@@ -573,15 +573,11 @@ ul { list-style: none; }
 }
 
 
-.hero h1 .dim { color: var(--text-faint); }
+.hero h1 .dim { color: var(--glow); }
 
 .hero h1 .pop {
-  background: var(--holo);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: holoShift 6s ease-in-out infinite;
+  color: #e654da;
+  text-shadow: 0 0 16px rgba(230, 84, 218, 0.45);
 }
 
 .subhead {
