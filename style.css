@@ -928,7 +928,7 @@ ul { list-style: none; }
 
 .clarity-body {
   margin-top: 16px;
-  font-size: clamp(15px, 1.4vw, 17px);
+  font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.6;
   color: var(--text-dim);
   max-width: 60ch;
@@ -1038,7 +1038,7 @@ ul { list-style: none; }
 }
 
 .update-subheading {
-  font-size: 13.5px;
+  font-size: 14.5px;
   color: var(--text-dim);
 }
 
@@ -1046,13 +1046,6 @@ ul { list-style: none; }
 .cta {
   padding: 72px 0 60px;
   text-align: center;
-}
-
-.cta h2 {
-  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: clamp(30px, 4.2vw, 48px);
-  font-weight: 900;
-  letter-spacing: -0.005em;
 }
 
 .email-link {
@@ -1078,19 +1071,6 @@ ul { list-style: none; }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-}
-
-.back-to-top {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-dim);
-  border-bottom: 1px solid transparent;
-  transition: color .2s ease, border-color .2s ease;
-}
-
-.back-to-top:hover {
-  color: var(--text);
-  border-color: var(--border);
 }
 
 .fine-print {
