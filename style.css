@@ -25,21 +25,13 @@
   --radius-sm: 2px;
 }
 
-/* Self-hosted variable font (Zalando Sans Expanded) for the hero
-   headline, both weight (200-900) and italic covered by two files. */
+/* Self-hosted display font for the hero headline and every other
+   heading/label that previously used Orbitron. */
 @font-face {
-  font-family: "Zalando Sans Expanded";
-  src: url("zalando-sans-expanded.woff2") format("woff2");
-  font-weight: 200 900;
+  font-family: "Squada One";
+  src: url("squada-one.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Zalando Sans Expanded";
-  src: url("zalando-sans-expanded-italic.woff2") format("woff2");
-  font-weight: 200 900;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -57,7 +49,7 @@ body {
 }
 
 h1, h2, .box-heading, .titlebar-label {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
 }
 
 .titlebar-label, .portrait-label, .trait dt, .service dt, .nav, .fine-print {
@@ -187,7 +179,7 @@ ul { list-style: none; }
 .nav a:hover { color: var(--text); }
 
 .nav-primary {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -334,7 +326,7 @@ ul { list-style: none; }
 }
 
 .portrait-plus {
-  font-family: "Orbitron", sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: 26px;
   font-weight: 700;
   color: var(--border-strong);
@@ -411,7 +403,7 @@ ul { list-style: none; }
 }
 
 .sidebar-tagline {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -567,7 +559,7 @@ ul { list-style: none; }
 .hero { padding: 10px 0 40px; }
 
 .hero h1 {
-  font-family: "Zalando Sans Expanded", "Big Shoulders Display", "Archivo Black", sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(34px, 5.4vw, 60px);
   font-weight: 900;
   line-height: 1.08;
@@ -724,7 +716,7 @@ ul { list-style: none; }
 }
 
 .update-headline {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(26px, 4vw, 44px);
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -741,7 +733,7 @@ ul { list-style: none; }
 }
 
 .update-heading {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: var(--text);
@@ -796,7 +788,7 @@ ul { list-style: none; }
 }
 
 .cta h2 {
-  font-family: "Orbitron", system-ui, sans-serif;
+  font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: clamp(28px, 4.2vw, 46px);
   font-weight: 900;
   letter-spacing: -0.005em;
