@@ -164,3 +164,23 @@
     );
   }
 })();
+
+// Respect prefers-reduced-motion for the looping Crystal Coins video,
+// same as the wall and the logo marquee.
+(() => {
+  const video = document.querySelector('.clarity-video');
+  if (!video) return;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function syncMotionPreference() {
+    if (reducedMotion.matches) {
+      video.removeAttribute('autoplay');
+      video.loop = false;
+      video.pause();
+    } else {
+      video.loop = true;
+      video.play().catch(() => {});
+    }
+  }
+  reducedMotion.addEventListener('change', syncMotionPreference);
+  syncMotionPreference();
+})();
