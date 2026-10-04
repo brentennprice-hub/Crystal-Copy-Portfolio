@@ -572,7 +572,7 @@ ul { list-style: none; }
 /* ---------- Main / Hero ---------- */
 .main { min-width: 0; }
 
-.hero { padding: 0 0 40px; }
+.hero { padding: 0; }
 
 .hero h1 {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
@@ -606,29 +606,32 @@ ul { list-style: none; }
 
 /* ---------- Client logo marquee ---------- */
 .marquee-section {
-  margin-top: 48px;
-  margin-bottom: 28px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .marquee-label {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
   font-size: 14px;
   letter-spacing: 0.1em;
-  color: var(--text-faint);
+  color: var(--text-dim);
   text-transform: uppercase;
   margin-bottom: 18px;
 }
 
 .marquee-viewport {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 72px, black calc(100% - 72px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, black 72px, black calc(100% - 72px), transparent 100%);
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 42s linear infinite;
+  /* Duration tuned to the doubled group's actual width so the scroll
+     speed (px/s) stays constant even though logos are now sized
+     individually (optical balance) rather than a uniform box. */
+  animation: marqueeScroll 60s linear infinite;
 }
 
 .marquee-track:hover {
@@ -643,10 +646,14 @@ ul { list-style: none; }
   padding-right: 52px;
 }
 
+/* Each logo gets a height tuned to its own aspect ratio (set inline)
+   rather than a uniform box, so wordmarks with very different
+   proportions read as similar visual weight instead of some
+   dominating a shared box and others shrinking into it. */
 .marquee-logo {
   display: block;
-  width: 130px;
-  height: 36px;
+  width: auto;
+  height: var(--tier-h);
   flex-shrink: 0;
   background-color: #e6e1f2;
   -webkit-mask-image: var(--logo-url);
@@ -659,6 +666,11 @@ ul { list-style: none; }
   mask-size: contain;
   transition: background-color 0.2s ease;
 }
+
+.tier-a { --tier-h: 26px; }
+.tier-b { --tier-h: 30px; }
+.tier-c { --tier-h: 40px; }
+.tier-d { --tier-h: 32px; }
 
 .marquee-logo:hover {
   background-color: #ff5fd2;
@@ -676,22 +688,26 @@ ul { list-style: none; }
 }
 
 @media (max-width: 860px) {
-  .marquee-viewport {
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  .marquee-section {
+    margin-top: calc(40px - clamp(18px, 3vw, 30px));
+    margin-bottom: calc(40px - clamp(18px, 3vw, 30px));
   }
-  .marquee-logo {
-    width: 100px;
-    height: 28px;
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
   }
   .marquee-group {
     gap: 34px;
     padding-right: 34px;
   }
+  .tier-a { --tier-h: 20px; }
+  .tier-b { --tier-h: 23px; }
+  .tier-c { --tier-h: 31px; }
+  .tier-d { --tier-h: 25px; }
 }
 
 /* ---------- Wall (email scroll animation) ---------- */
-.wall-section { margin-top: 8px; }
+.wall-section { margin-top: 0; }
 
 .wall-titlebar {
   border-radius: var(--radius-box) var(--radius-box) 0 0;
