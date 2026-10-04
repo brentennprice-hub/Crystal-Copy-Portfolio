@@ -226,8 +226,9 @@ ul { list-style: none; }
   .hero { order: 1; min-width: 0; }
   .marquee-section { order: 2; min-width: 0; }
   .wall-section { order: 3; min-width: 0; }
-  .sidebar { order: 4; }
-  .update-section { order: 5; min-width: 0; }
+  .testimonial-section { order: 4; min-width: 0; }
+  .sidebar { order: 5; }
+  .update-section { order: 6; min-width: 0; }
 }
 
 /* ---------- Sidebar: boxy window-chrome panels ---------- */
@@ -826,6 +827,94 @@ ul { list-style: none; }
   font-size: 12.5px;
   color: var(--text-faint);
   min-height: 1em;
+}
+
+/* ---------- Testimonials ---------- */
+.testimonial-section { margin-top: 36px; }
+
+.testimonial-body {
+  padding: 18px;
+}
+
+/* Bento mosaic: a left column of two stacked cards next to a right
+   column of two rows of two cards, mirroring an old-internet tiled
+   window layout. Each card's height comes from its own quote length
+   rather than a forced ratio, so the mosaic stays uneven like the
+   reference sketch without clipping or padding any of the text. */
+.testimonial-grid {
+  display: flex;
+  gap: 16px;
+}
+
+.testimonial-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.testimonial-col-left { flex: 0 1 40%; }
+.testimonial-col-right { flex: 1 1 60%; }
+
+/* The left column's two cards are stretched by the row above them to
+   match the right column's total height, so they need their own
+   flex-grow (rather than auto height) to actually fill that space
+   instead of leaving blank room below the shorter card. */
+.testimonial-col-left .t-big { flex: 1.6 1 auto; }
+.testimonial-col-left .t-small { flex: 1 1 auto; }
+
+.testimonial-row {
+  display: flex;
+  gap: 16px;
+}
+
+.testimonial-row .testimonial-card { min-width: 0; }
+.testimonial-row .t-medium { flex: 1; }
+.testimonial-row .t-wide { flex: 1.6; }
+.testimonial-row .t-large { flex: 1.7; }
+.testimonial-row .t-narrow { flex: 1; }
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+}
+
+.testimonial-card blockquote {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.testimonial-card figcaption {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+
+@media (max-width: 860px) {
+  .testimonial-section { margin-top: 28px; }
+  .testimonial-body { padding: 14px; }
+  .testimonial-grid,
+  .testimonial-row {
+    flex-direction: column;
+  }
+  .testimonial-col-left,
+  .testimonial-col-right {
+    flex: 1 1 auto;
+  }
+  .testimonial-row .t-medium,
+  .testimonial-row .t-wide,
+  .testimonial-row .t-large,
+  .testimonial-row .t-narrow {
+    flex: 1 1 auto;
+  }
 }
 
 /* ---------- Copy update notice ---------- */
