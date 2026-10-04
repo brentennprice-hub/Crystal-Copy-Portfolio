@@ -135,7 +135,7 @@
     // different content) always fetches the current one instead of
     // flashing the stale cached copy. Bump this version whenever the
     // logo file changes again.
-    const logoVersion = 'v=3';
+    const logoVersion = 'v=4';
     loadFirst(
       logoImg,
       [
