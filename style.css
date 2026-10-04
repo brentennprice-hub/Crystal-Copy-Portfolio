@@ -50,6 +50,7 @@ body {
 
 h1, h2, .box-heading, .titlebar-label {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
+  text-transform: uppercase;
 }
 
 .titlebar-label, .portrait-label, .trait dt, .service dt, .nav, .fine-print {
@@ -180,9 +181,10 @@ ul { list-style: none; }
 
 .nav-primary {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--text);
   border-bottom: 2px solid;
   border-image: var(--holo) 1;
@@ -254,7 +256,7 @@ ul { list-style: none; }
 }
 
 .titlebar-label {
-  font-size: 11.5px;
+  font-size: 13px;
   letter-spacing: 0.06em;
   color: var(--glow);
   text-shadow: 0 0 6px rgba(196, 181, 253, 0.7);
@@ -283,7 +285,7 @@ ul { list-style: none; }
 }
 
 .box-heading {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 1.3;
   color: var(--text);
@@ -404,7 +406,7 @@ ul { list-style: none; }
 
 .sidebar-tagline {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.5;
@@ -734,8 +736,9 @@ ul { list-style: none; }
 
 .update-heading {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  text-transform: uppercase;
   color: var(--text);
   margin-bottom: 14px;
 }
@@ -789,7 +792,7 @@ ul { list-style: none; }
 
 .cta h2 {
   font-family: "Squada One", "Big Shoulders Display", "Archivo Black", sans-serif;
-  font-size: clamp(28px, 4.2vw, 46px);
+  font-size: clamp(30px, 4.2vw, 48px);
   font-weight: 900;
   letter-spacing: -0.005em;
 }
