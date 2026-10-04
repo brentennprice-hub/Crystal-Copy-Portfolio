@@ -589,14 +589,23 @@ ul { list-style: none; }
 .hero h1 .dim { color: var(--glow); }
 
 .hero h1 .pop {
-  color: #e654da;
-  text-shadow: 0 0 16px rgba(230, 84, 218, 0.45);
+  color: #f9a4ef;
+  text-shadow: 0 0 10px rgba(249, 164, 239, 0.35);
 }
 
+/* Desktop reads "today." then breaks into "You'll remember one."; on
+   mobile that forced break orphans "today." alone on its own short
+   line, so the two variants swap which <br> is active: mobile lets
+   the whole line flow and wrap naturally, with a break kept only
+   right before "one." so it always lands on its own last line. */
+.hero-break-mobile { display: none; }
+
 @media (max-width: 860px) {
-  /* The glow reads much stronger at mobile's smaller headline size
-     relative to the blur radius - drop it rather than rescale it. */
-  .hero h1 .pop { text-shadow: none; }
+  .hero-break-desktop { display: none; }
+  .hero-break-mobile { display: inline; }
+  /* Glow reads stronger at mobile's smaller headline size relative to
+     the blur radius, so it's dialed back rather than reused as-is. */
+  .hero h1 .pop { text-shadow: 0 0 6px rgba(249, 164, 239, 0.3); }
 }
 
 .subhead {
