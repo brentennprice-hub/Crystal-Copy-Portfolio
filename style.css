@@ -35,12 +35,22 @@
   font-display: swap;
 }
 
+/* Self-hosted body font - replaces Share Tech Mono everywhere it was
+   used (base body copy, window chrome labels, buttons). */
+@font-face {
+  font-family: "Chakra Petch";
+  src: url("chakra-petch.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-family: "Chakra Petch", "Courier New", monospace;
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +64,7 @@ h1, h2, .box-heading, .titlebar-label {
 }
 
 .titlebar-label, .portrait-label, .trait dt, .service dt, .nav, .fine-print {
-  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-family: "Chakra Petch", "Courier New", monospace;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -103,7 +113,7 @@ ul { list-style: none; }
 /* ---------- Topbar ---------- */
 .topbar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 14px;
@@ -276,7 +286,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Chakra Petch", monospace;
   font-size: 11px;
   line-height: 1;
   color: var(--glow);
@@ -498,7 +508,7 @@ ul { list-style: none; }
   justify-content: center;
   margin-left: 2px;
   padding: 3px 9px 4px;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Chakra Petch", monospace;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -580,6 +590,12 @@ ul { list-style: none; }
   text-shadow: 0 0 16px rgba(230, 84, 218, 0.45);
 }
 
+@media (max-width: 860px) {
+  /* The glow reads much stronger at mobile's smaller headline size
+     relative to the blur radius - drop it rather than rescale it. */
+  .hero h1 .pop { text-shadow: none; }
+}
+
 .subhead {
   margin-top: 22px;
   font-size: clamp(15px, 1.6vw, 18px);
@@ -606,7 +622,7 @@ ul { list-style: none; }
   border-radius: var(--radius-sm);
   padding: 5px 11px;
   font: inherit;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Chakra Petch", monospace;
   font-size: 11.5px;
   cursor: pointer;
   transition: background .2s ease, border-color .2s ease;
