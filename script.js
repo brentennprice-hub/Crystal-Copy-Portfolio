@@ -1,6 +1,7 @@
 (() => {
   // Email campaign images: replace/add entries here to update the wall.
   const images = [
+    { name: 'HCD', width: 700, height: 1514, src: '10_HCD.webp' },
     { name: 'LS', width: 700, height: 1539, src: '00_LS.webp' },
     { name: 'EUROCAR', width: 700, height: 1647, src: '02_EUROCAR.webp' },
     { name: 'OT', width: 700, height: 1273, src: '03_OT.webp' },
@@ -10,7 +11,6 @@
     { name: 'BOOM', width: 700, height: 1490, src: '07_BOOM.webp' },
     { name: 'AYOH', width: 700, height: 1394, src: '08_AYOH.webp' },
     { name: 'CASTLEFLEXX', width: 700, height: 1384, src: '09_CASTLEFLEXX.webp' },
-    { name: 'HCD', width: 700, height: 1514, src: '10_HCD.webp' },
     { name: 'IVATHERM', width: 700, height: 1158, src: '11_IVATHERM.webp' },
   ];
 
