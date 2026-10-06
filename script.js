@@ -2,14 +2,16 @@
   // Email campaign images: replace/add entries here to update the wall.
   const images = [
     { name: 'LS', width: 700, height: 1539, src: '00_LS.webp' },
-    { name: 'AYOH', width: 700, height: 1763, src: '01_AYOH.webp' },
     { name: 'EUROCAR', width: 700, height: 1647, src: '02_EUROCAR.webp' },
     { name: 'OT', width: 700, height: 1273, src: '03_OT.webp' },
     { name: 'FB', width: 700, height: 1575, src: '04_FB.webp' },
     { name: 'IM8', width: 700, height: 1435, src: '05_IM8.webp' },
     { name: 'MAC', width: 700, height: 1281, src: '06_MAC.webp' },
     { name: 'BOOM', width: 700, height: 1490, src: '07_BOOM.webp' },
-    { name: 'FLING', width: 700, height: 1657, src: '08_FLING.webp' },
+    { name: 'AYOH', width: 700, height: 1394, src: '08_AYOH.webp' },
+    { name: 'CASTLEFLEXX', width: 700, height: 1384, src: '09_CASTLEFLEXX.webp' },
+    { name: 'HCD', width: 700, height: 1514, src: '10_HCD.webp' },
+    { name: 'IVATHERM', width: 700, height: 1158, src: '11_IVATHERM.webp' },
   ];
 
   const pixelsPerSecond = 26; // Increase for faster scrolling.
@@ -21,8 +23,12 @@
   let paused = false;
   let previousTime = null;
 
-  // Mix images across three columns; the middle column scrolls the opposite way.
-  [[0, 3, 6], [1, 4, 7], [2, 5, 8]].forEach((indices, index) => {
+  // Mix images across three columns (round-robin by index, so this keeps
+  // working regardless of how many images are listed above); the middle
+  // column scrolls the opposite way.
+  const columnIndices = [[], [], []];
+  images.forEach((_, i) => columnIndices[i % 3].push(i));
+  columnIndices.forEach((indices, index) => {
     const column = document.createElement('div');
     column.className = 'column';
     const track = document.createElement('div');
